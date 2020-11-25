@@ -2,8 +2,7 @@ import setuptools
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
-# gitlab+deploy-token-9
-# kzXuxvzYK3JQJwzhfUsk
+
 setuptools.setup(
     name="amazon-pay-v2",
     version="0.0.1",
