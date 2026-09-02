@@ -37,8 +37,9 @@ jobs:
 #         # TWINE_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python -m pip install --upgrade twine                   
-          REPO_LOWER=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
-          python -m twine upload --verbose --repository-url "https://pypi.pkg.github.com/${REPO_LOWER}" dist/*
-          
-          # OWNER_LOWER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
-          # python -m twine upload --verbose --repository-url "https://pypi.pkg.github.com/${OWNER_LOWER}" dist/*
+          OWNER_LOWER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          python -m twine upload --verbose \
+            --repository-url "https://pypi.pkg.github.com/${OWNER_LOWER}" \
+            --username "$TWINE_USERNAME" \
+            --password "$TWINE_PASSWORD" \
+            dist/*
