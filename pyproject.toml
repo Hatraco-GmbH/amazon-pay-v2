@@ -1,11 +1,11 @@
 [project]
 name = "amazon-pay-v2"
-version = "0.0.12"
+version = "0.1.0"
 dependencies = [
   "requests",
   "cryptography",
 ]
-requires-python = ">=3.7"
+requires-python = ">=3.11"
 authors = [
   {name = "Hatraco GmbH", email = "webdev@hatraco.de"},
 ]
