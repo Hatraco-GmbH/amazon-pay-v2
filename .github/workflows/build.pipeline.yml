@@ -30,10 +30,10 @@ jobs:
         run: |
           python -m build
 
-      - name: Publish to GitHub Packages
+      - name: Publish package
         env:
           TWINE_USERNAME: ${{ github.actor }}
           TWINE_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pip install twine
-          python -m twine upload --repository-url https://pypi.pkg.github.com/${{ github.repository }} dist/*          
+          python -m pip install --upgrade twine
+          python -m twine upload --verbose --repository-url https://pypi.pkg.github.com/${{ github.repository_owner }} dist/*          
