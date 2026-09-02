@@ -14,3 +14,5 @@ authors = [
   {name = "Hatraco GmbH", email = "webdev@hatraco.de"},
 ]
 readme = "README.md"
+[project.urls]
+Repository = "https://github.com/Hatraco-GmbH/amazon-pay-v2"
