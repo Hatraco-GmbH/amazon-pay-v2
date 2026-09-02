@@ -3,31 +3,36 @@ name: Python package
 on:
   push:
     tags:
-      - '*'
+      - 'v*'  # Empfohlen: Triggert bei Tags wie v1.0.0 (oder '*' für alle Tags)
 
 jobs:
-  build:
-
+  build-and-publish:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+    permissions:
+      contents: read
+      packages: write  # Zwingend erforderlich für den Upload zu GitHub Packages
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python 3.12
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.12
-      - name: Install dependencies
+          python-version: '3.12'
+
+      - name: Install Build Tools
         run: |
           python -m pip install --upgrade pip
-          python -m pip install --upgrade build
+          python -m pip install --upgrade build twine
+
       - name: Build package
         run: |
           python -m build
-      - name: Publish package
+
+      - name: Publish to GitHub Packages
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TWINE_USERNAME: ${{ github.actor }}
+          TWINE_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pip install twine
-          python -m twine upload --repository-url https://api.github.com/orgs/${{ github.repository_owner }}/packages/pypi/upload dist/*
+          python -m twine upload --repository-url https://pypi.pkg.github.com/${{ github.repository_owner }} dist/*
