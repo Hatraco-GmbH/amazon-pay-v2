@@ -33,7 +33,7 @@ jobs:
       - name: Publish package
         env:
           TWINE_USERNAME: ${{ github.actor }}
-          TWINE_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          TWINE_PASSWORD: ${{ secrets.GH_PACKAGE_TOKEN }}
         run: |
           python -m pip install --upgrade twine          
           OWNER_LOWER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
