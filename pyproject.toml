@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "amazon-pay-v2"
+version = "0.0.1"
+dependencies = [
+  "requests",
+  "cryptography",
+]
+requires-python = ">=3.7"
+authors = [
+  {name = "Hatraco GmbH", email = "webdev@hatraco.de"},
+]
+readme = "README.md"

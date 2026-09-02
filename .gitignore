@@ -3,3 +3,5 @@ settings.py
 __pycache__/
 amz_private_key.pem
 /.project
+.venv
+dist
